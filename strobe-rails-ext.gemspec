@@ -16,7 +16,8 @@ Gem::Specification.new do |s|
   #   activesupport is implicitly required by activemodel
   #   having a ~> dependency on activesupport here as well
   #   seems to thoroughly confuse the hell out of rubygems.
-  s.add_dependency "actionpack", "< 3.2.0", ">= 3.0.0"
+  s.add_dependency "actionpack",    "< 3.2.0", ">= 3.0.0"
+  s.add_dependency "activesupport", "< 3.2.0", ">= 3.0.0"
 
   s.files        = Dir["lib/**/*.rb"]
   s.require_path = 'lib'

@@ -1,4 +1,5 @@
 require 'action_controller'
+require 'active_support/concern'
 
 module Strobe
   module ActionController
@@ -25,6 +26,12 @@ module Strobe
           param[key]
         end
       end
+    end
+
+    module All
+      extend ActiveSupport::Concern
+      include Haltable
+      include ParamPath
     end
   end
 end
