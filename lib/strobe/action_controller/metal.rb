@@ -18,17 +18,22 @@ module Strobe
       include ::ActionController::Caching
       include ::ActionController::MimeResponds
       include ::ActionController::ImplicitRender
-      
-      # Add instrumentations hooks at the bottom, to ensure they instrument
-      # all the methods properly.
-      include ::ActionController::Instrumentation
-      
+
+      include ::ActionController::ForceSSL if defined?(::ActionController::ForceSSL)
+      include ::ActionController::HttpAuthentication::Basic::ControllerMethods
+      include ::ActionController::HttpAuthentication::Digest::ControllerMethods
+      include ::ActionController::HttpAuthentication::Token::ControllerMethods
+
       # Before callbacks should also be executed the earliest as possible, so
       # also include them at the bottom.
       include ::AbstractController::Callbacks
-      
+
       # The same with rescue, append it at the end to wrap as much as possible.
       include ::ActionController::Rescue
+
+      # Add instrumentations hooks at the bottom, to ensure they instrument
+      # all the methods properly.
+      include ::ActionController::Instrumentation
 
       include Haltable
       include Param
