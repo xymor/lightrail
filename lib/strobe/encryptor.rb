@@ -3,13 +3,11 @@ module Strobe
     class InvalidMessage < StandardError; end
     OpenSSLCipherError = OpenSSL::Cipher.const_defined?(:CipherError) ? OpenSSL::Cipher::CipherError : OpenSSL::CipherError
 
-    include Singleton
+    attr_accessor :addon_secret
 
-    class << self
-      delegate :encrypt, :decrypt, :to => :instance
+    def initialize(secret)
+      @addon_secret = secret
     end
-
-    class_attribute :addon_secret
 
     def encrypt(msg, initvec = nil)
       msg       = msg.to_s
