@@ -1,1 +1,1 @@
-Some Rails extensions that we like to use
+Some Rails extensions that we like to use across different projects.
