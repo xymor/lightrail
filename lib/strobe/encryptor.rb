@@ -1,3 +1,5 @@
+require 'openssl'
+
 module Strobe
   class Encryptor
     class InvalidMessage < StandardError; end
@@ -11,7 +13,7 @@ module Strobe
 
     def encrypt(msg, initvec = nil)
       msg       = msg.to_s
-      cipher    = OpenSSL::Cipher::Cipher.new("aes-256-cbc")
+      cipher    = new_cipher
       initvec   = decode64(initvec) if initvec
       initvec ||= cipher.random_iv
 
@@ -50,7 +52,7 @@ module Strobe
     end
 
     def encode64(s)
-      ActiveSupport::Base64.encode64(s)
+      ActiveSupport::Base64.encode64s(s)
     end
 
     def new_cipher
