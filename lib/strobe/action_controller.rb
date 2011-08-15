@@ -14,7 +14,7 @@ module Strobe
         end
       end
 
-      def halt(options = nil)
+      def halt(opts = nil)
         throw :halt, opts
       end
     end
