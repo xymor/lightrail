@@ -13,6 +13,10 @@ module Strobe
           end
         end
 
+        def around_association(collection, scope)
+          yield
+        end
+
         # Declares that this object is associated to the given association
         # with cardinality 1..1.
         def has_one(*associations)

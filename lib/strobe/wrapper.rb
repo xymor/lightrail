@@ -32,7 +32,20 @@ module Strobe
 
         result.associations.inject(result) do |final, (key, value)|
           value.uniq!
-          render(value, scope, { :as => key }, final)
+          render_association(value, scope, { :as => key }, final)
+        end
+      end
+
+      def render_association(value, scope, options, result)
+        if value.empty?
+          handle_blank(value, result, options)
+          result
+        else
+          wrapper = Strobe::Wrapper.find(value.first)
+          wrapper.around_association(value, scope) do
+            value.each { |i| wrapper.new(i, scope).render_many(options, result) }
+            result
+          end
         end
       end
 
