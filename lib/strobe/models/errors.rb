@@ -15,6 +15,6 @@ module Strobe
           hash
         end
       end
-    end/
+    end
   end
 end
