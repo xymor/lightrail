@@ -1,6 +1,12 @@
 ![Lightrail](https://github.com/lightness/lightrail/raw/master/logo.png)
 ============
 
+Lightrail is a minimalist Ruby on Rails stack for apps that serve
+primarily JSON APIs. If Sinatra doesn't give you enough, but Rails
+is still too much, Lightrail is for you.
+
+Join the mailing list by sending a message to: lightrail@librelist.com
+
 # Lightrail::ActionController::Metal
 
 `Lightrail::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs.
