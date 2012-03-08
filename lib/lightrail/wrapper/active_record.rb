@@ -1,4 +1,4 @@
-module Strobe
+module Lightrail
   module Wrapper
     module ActiveRecord
       def slice(*attrs)
@@ -10,6 +10,6 @@ module Strobe
 end
 
 ActiveSupport.on_load(:active_record) do
-  include Strobe::Wrapper::ActiveRecord
+  include Lightrail::Wrapper::ActiveRecord
 end
 

@@ -1,8 +1,8 @@
-module Strobe
+module Lightrail
   module Wrapper
     class Result < Hash
       attr_reader :associations
-  
+
       def initialize
         super
         @associations = Hash.new { |h,k| h[k] = [] }
@@ -25,9 +25,9 @@ module Strobe
         if object.blank?
           handle_blank(object, result, options)
         elsif object.respond_to?(:each)
-          object.each { |i| Strobe::Wrapper.find(i).new(i, scope).render_many(options, result) }
+          object.each { |i| Lightrail::Wrapper.find(i).new(i, scope).render_many(options, result) }
         else
-          Strobe::Wrapper.find(object).new(object, scope).render(options, result)
+          Lightrail::Wrapper.find(object).new(object, scope).render(options, result)
         end
 
         result.associations.inject(result) do |final, (key, value)|
@@ -41,7 +41,7 @@ module Strobe
           handle_blank(value, result, options)
           result
         else
-          wrapper = Strobe::Wrapper.find(value.first)
+          wrapper = Lightrail::Wrapper.find(value.first)
           wrapper.around_association(value, scope) do
             value.each { |i| wrapper.new(i, scope).render_many(options, result) }
             result
@@ -60,6 +60,6 @@ module Strobe
   end
 end
 
-require "strobe/wrapper/model"
-require "strobe/wrapper/controller"
-require "strobe/wrapper/active_record"
+require "lightrail/wrapper/model"
+require "lightrail/wrapper/controller"
+require "lightrail/wrapper/active_record"

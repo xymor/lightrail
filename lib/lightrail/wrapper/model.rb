@@ -1,6 +1,6 @@
-require "strobe/wrapper/associations"
+require "lightrail/wrapper/associations"
 
-module Strobe
+module Lightrail
   module Wrapper
     class Model
       class_attribute :associations
@@ -90,7 +90,7 @@ module Strobe
         _include_associations(result, view, options[:include])
       end
 
-      private      
+      private
 
       def _include_associations(result, view, includes)
         return result if includes.blank?

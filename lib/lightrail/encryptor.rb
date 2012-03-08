@@ -1,6 +1,6 @@
 require 'openssl'
 
-module Strobe
+module Lightrail
   class Encryptor
     class InvalidMessage < StandardError; end
     OpenSSLCipherError = OpenSSL::Cipher.const_defined?(:CipherError) ? OpenSSL::Cipher::CipherError : OpenSSL::CipherError

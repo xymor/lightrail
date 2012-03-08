@@ -1,4 +1,4 @@
-module Strobe
+module Lightrail
   module Wrapper
     module Controller
       extend ActiveSupport::Concern
@@ -7,7 +7,7 @@ module Strobe
 
       # Receives an object and render it as JSON considering its respective wrapper.
       def json(object, options={})
-        json = Strobe::Wrapper.render(object, wrapper_scope,
+        json = Lightrail::Wrapper.render(object, wrapper_scope,
           :include => wrapper_includes, :fallback => controller_name, :as => options.delete(:as))
         render options.merge(:json => json)
       end
@@ -23,7 +23,7 @@ module Strobe
         return array if array.empty?
 
         klass = array[0].class
-        valid = Strobe::Wrapper.find(klass).valid_includes(wrapper_includes)
+        valid = Lightrail::Wrapper.find(klass).valid_includes(wrapper_includes)
         return array if valid.empty?
 
         klass.send(:preload_associations, array, valid)
@@ -32,7 +32,7 @@ module Strobe
 
       # Returns a wrapper around the given object.
       def wrapper(object, scope=wrapper_scope)
-        Strobe::Wrapper.find(object).new(object, scope)
+        Lightrail::Wrapper.find(object).new(object, scope)
       end
 
       # Returns given includes as a nested hash.
@@ -49,7 +49,7 @@ module Strobe
 end
 
 ActiveSupport.on_load(:action_controller) do
-  include Strobe::Wrapper::Controller
+  include Lightrail::Wrapper::Controller
 end
 
-Strobe::ActionController::Metal.send :include, Strobe::Wrapper::Controller
+Lightrail::ActionController::Metal.send :include, Lightrail::Wrapper::Controller

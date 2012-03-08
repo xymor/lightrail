@@ -1,4 +1,4 @@
-module Strobe
+module Lightrail
   module Wrapper
     module Associations
       # +association+ returns the name of the association in the wrapped object.

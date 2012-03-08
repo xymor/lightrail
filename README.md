@@ -1,10 +1,8 @@
-Some Rails extensions that we share across different projects.
+# Lightrail::ActionController::Metal
 
-# Strobe::ActionController::Metal
+`Lightrail::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs.
 
-`Strobe::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs.
-
-`Strobe::ActionController::Metal` also provides three new behaviors:
+`Lightrail::ActionController::Metal` also provides three new behaviors:
 
 * `param` is a method that can handle with nested params hashes. For instance, `param("user.id")` is the same as `params[:user].is_a?(Hash) && params[:user][:id]`;
 
@@ -14,42 +12,42 @@ Some Rails extensions that we share across different projects.
 
 # config.strobe.*
 
-Strobe adds a config.strobe namespace to your application with two main methods:
+Lightrail adds a config.strobe namespace to your application with two main methods:
 
 * `remove_session_middlewares!` removes `ActionDispatch::Cookies`,
 `ActionDispatch::Session::CookieStore` and `ActionDispatch::Flash` middlewares;
 
 * `remove_browser_middlewares!` removes the `ActionDispatch::BestStandardsSupport` middleware.
 
-# Strobe::Encryptor
+# Lightrail::Encryptor
 
-Provides an encrypt/decrypt facility used across Strobe projects;
+Provides an encrypt/decrypt facility used across Lightrail projects;
 
-# Strobe::Wrapper
+# Lightrail::Wrapper
 
-Strobe::Wrapper provides a wrapper functionality to make it easier to generate JSON responses. It is divided in three main parts:
+Lightrail::Wrapper provides a wrapper functionality to make it easier to generate JSON responses. It is divided in three main parts:
 
 ### Creating a wrapper
 
 Each model needs to have a wrapper in order to be rendered as JSON. Instead of using several options (like `:only`, `:method` and friends), it expects you to explicitly define the hash to returned through the `view` method. Here is an example:
 
-    class AccountWrapper < Strobe::Wrapper::Model
+    class AccountWrapper < Lightrail::Wrapper::Model
       has_one :credit_card
       has_one :subscription
-      
+
       def view
         attrs = [:id, :name, :user_id]
-        
+
         if owner?
           attrs.concat [:billing_address, :billing_country]
         end
-        
+
         # Shortcut for account.attributes.slice()
         hash = account.slice(*attrs)
         hash[:owner] = owner?
         hash
       end
-    
+
       # Whenever an association method is defined explicitly
       # it is given higher preference. That said, whenever
       # including a credit_card, it will invoke this method
@@ -57,9 +55,9 @@ Each model needs to have a wrapper in order to be rendered as JSON. Instead of u
       def credit_card
         account.credit_card if owner?
       end
-    
+
       protected
-      
+
       def owner?
         account.owners.include?(scope)
       end
@@ -76,7 +74,7 @@ Another convenience is that the wrapper can automatically handle associations. A
         "user_id": null,
         "credit_card_id": 1
       },
-      
+
       "credit_cards": {
         "id": 1,
         "last_4": "3232"
@@ -91,7 +89,7 @@ Although most of the times, this will be done automatically by the controller.
 
 ### Using the wrapper in the controller
 
-`Strobe::Wrapper::Controller` provides several facilities to use wrappers from the controller:
+`Lightrail::Wrapper::Controller` provides several facilities to use wrappers from the controller:
 
 * `json(resources)` is the main method. Given a resource (or an array of resources), it will find the proper wrapper and render it. Any include given at `params[:include]` will be validated and passed to the underlying wrapper. Consider the following action:
 
@@ -100,9 +98,9 @@ Although most of the times, this will be done automatically by the controller.
         end
 
   When accessed as `/accounts/last`, it won't return any credit card or subscription resource in the JSON, unless it is given explicitly as `/accounts/last?include=credit_cards,subscriptions` (in plural).
-  
+
   In order for the `json` method to work, a `wrapper_scope` needs to be defined. You can usually define it in your `ApplicationController` as follow:
-  
+
         def wrapper_scope
           current_user
         end
@@ -117,7 +115,7 @@ Although most of the times, this will be done automatically by the controller.
 
 ### Active Record extensions
 
-Strobe::Wrapper provides one Active Record extension method called `slice`. In order to understand what it does, it is easier to look at the source:
+Lightrail::Wrapper provides one Active Record extension method called `slice`. In order to understand what it does, it is easier to look at the source:
 
     def slice(*attrs)
       attrs.map! { |a| a.to_s }

@@ -1,7 +1,7 @@
-require 'strobe/action_controller/haltable'
-require 'strobe/action_controller/param'
+require 'lightrail/action_controller/haltable'
+require 'lightrail/action_controller/param'
 
-module Strobe
+module Lightrail
   module ActionController
     # A configured ActionController::Metal that includes
     # only the basic functionality.

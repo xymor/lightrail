@@ -1,4 +1,4 @@
-module Strobe
+module Lightrail
   module ActionController
     module Param
       def param(key)

@@ -1,10 +1,10 @@
 require 'active_model/errors'
 
-module Strobe
+module Lightrail
   module Models
     module Errors
       def errors
-        @errors ||= Strobe::Models::Errors::Errors.new(self)
+        @errors ||= Lightrail::Models::Errors::Errors.new(self)
       end
 
       class Errors < ::ActiveModel::Errors
