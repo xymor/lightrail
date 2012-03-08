@@ -10,13 +10,9 @@ Join the mailing list by sending a message to: lightrail@librelist.com
 
 # Lightrail::ActionController::Metal
 
-`Lightrail::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs.
+`Lightrail::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs, with the following additional behaviors:
 
-`Lightrail::ActionController::Metal` also provides three new behaviors:
-
-* `param` is a method that can handle with nested params hashes. For instance, `param("user.id")` is the same as `params[:user].is_a?(Hash) && params[:user][:id]`;
-
-* `halt` provides an ability to halt the rendering at any point using Ruby's throw/catch mechanism. Any option passed to `halt` is forwarded to the `render` method;
+* `halt` stops rendering at any point using Ruby's throw/catch mechanism. Any option passed to `halt` is forwarded to the `render` method
 
 * `render :errors` is a renderer extension that allows you to easily render an error as JSON. It is simply a convenience method for `render :json => errors, :status => 422`. With the `halt` mechanism above, this ends up being a common pattern in the source code: `halt :errors => { :request => "invalid" }`.
 
