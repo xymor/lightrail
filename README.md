@@ -10,9 +10,9 @@
 
 * `render :errors` is a renderer extension that allows you to easily render an error as JSON. It is simply a convenience method for `render :json => errors, :status => 422`. With the `halt` mechanism above, this ends up being a common pattern in the source code: `halt :errors => { :request => "invalid" }`.
 
-# config.strobe.*
+# config.lightrail.*
 
-Lightrail adds a config.strobe namespace to your application with two main methods:
+Lightrail adds a config.lightrail namespace to your application with two main methods:
 
 * `remove_session_middlewares!` removes `ActionDispatch::Cookies`,
 `ActionDispatch::Session::CookieStore` and `ActionDispatch::Flash` middlewares;

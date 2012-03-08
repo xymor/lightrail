@@ -17,8 +17,6 @@ Gem::Specification.new do |gem|
   gem.files        = Dir["lib/**/*.rb"]
   gem.require_path = 'lib'
 
-  # Provide a rails binary so we don't need to depend
-  # on the rails gem in strobe internal projects.
   gem.bindir       = 'bin'
   gem.executables  = %w(lightrail)
 end
