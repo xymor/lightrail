@@ -10,13 +10,14 @@ Gem::Specification.new do |gem|
   gem.homepage    = 'http://github.com/tarcieri/lightrail'
   gem.summary     = 'Slim Rails stack for JSON services'
   gem.description = 'Lightrail slims Rails down to the bare essentials great JSON web services crave'
+  gem.files        = Dir["lib/**/*.rb"]
+  gem.require_path = 'lib'
+  gem.bindir       = 'bin'
+  gem.executables  = %w(lightrail)
 
   # This depends on ActiveSupport and ActionPack for us.
   gem.add_dependency 'railties', '~> 3.2.0'
 
-  gem.files        = Dir["lib/**/*.rb"]
-  gem.require_path = 'lib'
-
-  gem.bindir       = 'bin'
-  gem.executables  = %w(lightrail)
+  gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'rspec'
 end
