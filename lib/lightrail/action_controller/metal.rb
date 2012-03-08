@@ -35,7 +35,6 @@ module Lightrail
       include ::ActionController::Instrumentation
 
       include Haltable
-      include Param
     end
   end
 end
