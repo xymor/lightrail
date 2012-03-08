@@ -1,3 +1,6 @@
+![Lightrail](https://github.com/lightness/lightrail/raw/master/logo.png)
+============
+
 # Lightrail::ActionController::Metal
 
 `Lightrail::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs.
