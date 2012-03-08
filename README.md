@@ -19,19 +19,6 @@ Join the mailing list by sending a message to: lightrail@librelist.com
 
 * `render :errors` is a renderer extension that allows you to easily render an error as JSON. It is simply a convenience method for `render :json => errors, :status => 422`. With the `halt` mechanism above, this ends up being a common pattern in the source code: `halt :errors => { :request => "invalid" }`.
 
-# config.lightrail.*
-
-Lightrail adds a config.lightrail namespace to your application with two main methods:
-
-* `remove_session_middlewares!` removes `ActionDispatch::Cookies`,
-`ActionDispatch::Session::CookieStore` and `ActionDispatch::Flash` middlewares;
-
-* `remove_browser_middlewares!` removes the `ActionDispatch::BestStandardsSupport` middleware.
-
-# Lightrail::Encryptor
-
-Provides an encrypt/decrypt facility used across Lightrail projects;
-
 # Lightrail::Wrapper
 
 Lightrail::Wrapper provides a wrapper functionality to make it easier to generate JSON responses. It is divided in three main parts:
@@ -132,3 +119,12 @@ Lightrail::Wrapper provides one Active Record extension method called `slice`. I
     end
 
 This method was used in the example showed above.
+
+# config.lightrail.*
+
+Lightrail adds a config.lightrail namespace to your application with two main methods:
+
+* `remove_session_middlewares!` removes `ActionDispatch::Cookies`,
+`ActionDispatch::Session::CookieStore` and `ActionDispatch::Flash` middlewares;
+
+* `remove_browser_middlewares!` removes the `ActionDispatch::BestStandardsSupport` middleware.
