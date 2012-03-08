@@ -10,7 +10,7 @@ Join the mailing list by sending a message to: lightrail@librelist.com
 
 # Lightrail::ActionController::Metal
 
-`Lightrail::ActionController::Metal` provides a lightweight `ActionController::Base` without several modules that are not used when your controller main concern is to handle APIs, with the following additional behaviors:
+`Lightrail::ActionController::Metal` is a lightweight `ActionController::Base` replacement designed for when APIs are your main concern. It removes several irrelevant modules, and also provides following additional behaviors:
 
 * `halt` stops rendering at any point using Ruby's throw/catch mechanism. Any option passed to `halt` is forwarded to the `render` method
 
