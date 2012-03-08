@@ -1,5 +1,6 @@
 ![Lightrail](https://github.com/lightness/lightrail/raw/master/logo.png)
 ============
+[![Build Status](https://secure.travis-ci.org/lightness/lightrail.png?branch=master)](http://travis-ci.org/lightness/lightrail)
 
 Lightrail is a minimalist Ruby on Rails stack for apps that serve
 primarily JSON APIs. If Sinatra doesn't give you enough, but Rails
