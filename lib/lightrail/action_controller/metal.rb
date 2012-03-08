@@ -1,5 +1,4 @@
 require 'lightrail/action_controller/haltable'
-require 'lightrail/action_controller/param'
 
 module Lightrail
   module ActionController
